@@ -1,10 +1,52 @@
-import React from 'react'
+import React, { useState } from "react";
 import { Grid, Typography, Stack, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import "../Register/RegisterForm.css";
 import logo from "../../assets/logos.svg";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function LoginForm() {
+
+  const [error, setError] = useState("");
+
+  const [details, setDetails] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    
+    if (!details.username || !details.password) {
+      setError("Please fill in all the fields");
+      return;
+    }
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/auth/login",
+        details,
+        { withCredentials: true }
+      );
+
+      //save in local storage
+      localStorage.setItem("currentUser", JSON.stringify(res.data));
+      // navigate("/");
+    } catch (err) {
+     setError(err.response.data);
+      console.log(err);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setDetails((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
   return (
     <Grid
       container
@@ -25,8 +67,9 @@ export default function LoginForm() {
             mt: "-25px",
           }}
         >
-          Sing In 
-        </Typography>
+          Sing In
+        </Typography>{" "}
+        {error && <p style={{ color: "red", fontSize: "15px" }}>{error}</p>}
         <Stack
           gap="20px"
           sx={{ justifyContent: "center", alignItems: "center" }}
@@ -35,27 +78,38 @@ export default function LoginForm() {
             required
             id="outlined-required"
             label="Required"
+            name="username"
             defaultValue="Username"
             sx={{ width: { xs: "90%", sm: "70%", md: "70%" } }}
+            onChange={handleInputChange}
           />
           <TextField
             required
             id="outlined-required"
             label="Required"
+            name="password"
             defaultValue="Password"
             sx={{ width: { xs: "90%", sm: "70%", md: "70%" } }}
+            onChange={handleInputChange}
           />
         </Stack>
         <Button
           variant="contained"
           sx={{ mt: "25px", mb: "15px" }}
           className="btn"
+          onClick={handleSubmit}
         >
-          <span class="btn-text-one">Login</span>
-          <span class="btn-text-two">Submit</span>
+          <span className="btn-text-one">Login</span>
+          <span className="btn-text-two">Submit</span>
         </Button>
         <Typography sx={{ fontSize: "13px", fontFamily: "Noto Sans" }}>
-         Dont have an account ? Sign Up
+          Dont have an account ?
+          <Link
+            to="/register"
+            style={{ textDecoration: "none", marginLeft: "8px" }}
+          >
+            Sign up
+          </Link>
         </Typography>
       </Grid>
     </Grid>
