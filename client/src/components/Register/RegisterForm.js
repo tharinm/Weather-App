@@ -5,7 +5,6 @@ import "./RegisterForm.css";
 import logo from "../../assets/logos.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
 
 export default function RegisterForm() {
   const navigate = useNavigate();

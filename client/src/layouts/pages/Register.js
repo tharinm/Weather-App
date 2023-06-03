@@ -30,7 +30,7 @@ export default function Register() {
         <Grid
           item
           sx={{
-            margin: "px",
+            margin: "",
             display: { xs: "none", sm: "none", md: "block" },
           }}
         >
