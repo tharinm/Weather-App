@@ -26,7 +26,7 @@ export default function LoginForm() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/auth/login",
+        "https://weather-b.onrender.com//api/auth/login",
         details,
         { withCredentials: true }
       );
