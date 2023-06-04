@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //localhost:3000
-http: app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+http: app.use(cors({ origin: "https://weather-f.onrender.com", credentials: true }));
 
 const connect = async () => {
   try {
