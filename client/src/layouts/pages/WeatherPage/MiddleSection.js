@@ -181,7 +181,7 @@ export default function MiddleSection() {
             to="/weather-forecast"
             style={{ textDecoration: "none", color: "white" }}
           >
-            Weekly Forecast
+            View More
           </Link>
         </Button>
       </Grid>
