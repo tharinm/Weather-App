@@ -1,29 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Grid, Typography, Button } from "@mui/material";
 import SingleDayWeather from "../../components/weatherpage/SingleDayWeather";
-
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { weaklyData } from "../Home";
 
 export default function WeeklyForecast() {
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const singleTemp = query.get("singleTemp");
-  const daysArray = query.get("daysArray");
-  const weatherConditions = query.get("weatherConditions");
+  const { singleWeather } = useContext(weaklyData);
 
-  // Convert the string representation of the arrays to actual arrays
-  const singleTempArray = JSON.parse(singleTemp);
-  const daysArrays = JSON.parse(daysArray);
-  const weatherConditionsArray = JSON.parse(weatherConditions);
+  const arrayOfObjects = singleWeather.map((subarray) => {
+    return {
+      day: subarray[0],
+      temperature: subarray[1],
+      condition: subarray[2],
+      icon: subarray[3],
+    };
+  });
 
-  //   console.log(weatherConditionsArray);
-
-  const convertArrayToObject = (array) => {
-    return array.map(([weather, icon]) => ({ weather, icon }));
-  };
-
-  const convertedArray = convertArrayToObject(weatherConditionsArray);
-
+  //   console.log(arrayOfObjects);
   //   console.log(convertedArray);
 
   return (
@@ -71,14 +64,13 @@ export default function WeeklyForecast() {
             // alignItems: "center",
           }}
         >
-          {singleTempArray.map((temperature, index) => (
+          {arrayOfObjects.map((val, index) => (
             <Grid item xs={6} md={2} sx={{}} key={index}>
               <SingleDayWeather
-                key={index}
-                temperature={temperature}
-                day={daysArrays[index]}
-                condition={convertedArray[index].weather}
-                imageSrc={convertedArray[index].icon}
+                day={val.day}
+                temperature={val.temperature}
+                condition={val.condition}
+                imageSrc={val.icon}
               />
             </Grid>
           ))}

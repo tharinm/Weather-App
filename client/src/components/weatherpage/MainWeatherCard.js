@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { Box,  Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { weatherDataWrap } from "../../layouts/pages/WeatherMain";
 import moment from "moment";
 import {} from "react-router-dom";
+import { weaklyData } from "../../layouts/Home";
 
 export default function MainWeatherCard() {
   const { weatherData, setWeatherData } = useContext(weatherDataWrap);

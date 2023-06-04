@@ -7,8 +7,11 @@ import Button from "@mui/material/Button";
 import { weatherDataWrap } from "../WeatherMain";
 import axios from "axios";
 import moment from "moment";
+import { weaklyData } from "../../Home";
+import { Link } from "react-router-dom";
 
 export default function MiddleSection() {
+  const { singleWeather, setSingleWeather } = useContext(weaklyData);
   const { weatherData, lat, long } = useContext(weatherDataWrap);
   const [imageSrc, setImageSrc] = useState("");
   const [dayWeather, setDayWeather] = useState({});
@@ -112,15 +115,15 @@ export default function MiddleSection() {
   // console.log(getDaysArray());
 
   const handleWeeklyForecastClick = () => {
-    const queryParams = new URLSearchParams({
-      singleTemp: JSON.stringify(singleTemp),
-      daysArray: JSON.stringify(getDaysArray()),
-      weatherConditions: JSON.stringify(weatherConditions),
-    });
-
-    const url = `/weather-forecast?${queryParams.toString()}`;
-    window.location.href = url;
+    setSingleWeather(weatherDataArray);
   };
+
+  const weatherDataArray = getDaysArray().map((day, index) => {
+    const temp = singleTemp[index];
+    const condition = weatherConditions[index][0];
+    const imageSrc = weatherConditions[index][1];
+    return [day, temp, condition, imageSrc];
+  });
 
   // console.log(weatherConditions);
 
@@ -174,7 +177,12 @@ export default function MiddleSection() {
           style={{ marginTop: "15px" }}
           onClick={handleWeeklyForecastClick}
         >
-          Weekly Forecast
+          <Link
+            to="/weather-forecast"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            Weekly Forecast
+          </Link>
         </Button>
       </Grid>
     </Grid>
