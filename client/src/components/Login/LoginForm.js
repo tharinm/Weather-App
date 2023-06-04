@@ -77,18 +77,19 @@ export default function LoginForm() {
           <TextField
             required
             id="outlined-required"
-            label="Required"
+            label="username"
             name="username"
-            defaultValue="Username"
+            // defaultValue="Username"
             sx={{ width: { xs: "90%", sm: "70%", md: "70%" } }}
             onChange={handleInputChange}
           />
           <TextField
             required
             id="outlined-required"
-            label="Required"
+            label="Password"
             name="password"
-            defaultValue="Password"
+            type="password"
+            // defaultValue="Password"
             sx={{ width: { xs: "90%", sm: "70%", md: "70%" } }}
             onChange={handleInputChange}
           />

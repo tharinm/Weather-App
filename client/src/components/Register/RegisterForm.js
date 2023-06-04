@@ -75,8 +75,8 @@ export default function RegisterForm() {
           <TextField
             required
             id="outlined-required"
-            label="Required"
-            defaultValue="Username"
+            label="Username"
+            // defaultValue="Username"
             name="username"
             sx={{ width: { xs: "90%", sm: "70%", md: "70%" } }}
             onChange={handleInputChange}
@@ -84,9 +84,10 @@ export default function RegisterForm() {
           <TextField
             required
             id="outlined-required"
-            label="Required"
-            defaultValue="Password"
+            label="Password"
+            // defaultValue="Password"
             name="password"
+            type="password"
             sx={{ width: { xs: "90%", sm: "70%", md: "70%" } }}
             onChange={handleInputChange}
           />
