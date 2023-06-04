@@ -26,7 +26,7 @@ export default function RegisterForm() {
     // console.log(details);
     try {
       await axios.post(
-        "https://weather-b.onrender.com//api/auth/register",
+        "https://weather-b.onrender.com/api/auth/register",
         details
       );
       navigate("/");
