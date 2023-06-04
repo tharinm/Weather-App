@@ -1,10 +1,18 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import { Box, Grid } from "@mui/material";
 import TopSection from "./WeatherPage/TopSection";
 
 import MiddleSection from "./WeatherPage/MiddleSection";
 
+export const weatherDataWrap = createContext({});
+
 export default function WeatherMain() {
+  const [weatherData, setWeatherData] = useState({});
+  const [err, setErr] = useState("");
+
+  //   console.log(currentUser.username);
+
+  // console.log(weatherData.weather)
   return (
     <Box
       sx={{
@@ -27,12 +35,16 @@ export default function WeatherMain() {
           //   alignItems:'center'
         }}
       >
-        <Grid item xs={12} sx={{}}>
-          <TopSection />
-        </Grid>
-        <Grid item xs={12} sx={{ mt: { md: "-35px", xs: "30px" } }}>
-          <MiddleSection />
-        </Grid>
+        <weatherDataWrap.Provider
+          value={{ weatherData, setWeatherData, err, setErr }}
+        >
+          <Grid item xs={12} sx={{}}>
+            <TopSection />
+          </Grid>
+          <Grid item xs={12} sx={{ mt: { md: "-35px", xs: "30px" } }}>
+            <MiddleSection />
+          </Grid>
+        </weatherDataWrap.Provider>
       </Grid>
     </Box>
   );

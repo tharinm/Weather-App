@@ -3,10 +3,11 @@ import { Grid, Typography, Stack, Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import "../Register/RegisterForm.css";
 import logo from "../../assets/logos.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
 
@@ -18,7 +19,6 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
     if (!details.username || !details.password) {
       setError("Please fill in all the fields");
       return;
@@ -33,9 +33,9 @@ export default function LoginForm() {
 
       //save in local storage
       localStorage.setItem("currentUser", JSON.stringify(res.data));
-      // navigate("/");
+      navigate("/weather");
     } catch (err) {
-     setError(err.response.data);
+      setError(err.response.data);
       console.log(err);
     }
   };

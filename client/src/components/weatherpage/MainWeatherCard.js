@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
+import { weatherDataWrap } from "../../layouts/pages/WeatherMain";
+import moment from "moment";
+import {} from "react-router-dom";
 
 export default function MainWeatherCard() {
+  const { weatherData, setWeatherData } = useContext(weatherDataWrap);
+
+  if (
+    !weatherData ||
+    !weatherData.city ||
+    !weatherData.list[0].main.temp ||
+    !weatherData.list[0].weather[0].main ||
+    !weatherData.list[0].weather[0].icon
+  ) {
+    return (
+      <Typography>Loading...</Typography>
+      // or render a loading state component
+    );
+  }
+
+  const currentDay = moment().format("Do");
+  const currentMonth = moment().format("MMMM");
+
+  const temperatureInCelsius = Math.round(
+    weatherData.list[0].main.temp - 273.15
+  );
+
+  console.log(weatherData.list[0].main.temp);
+  //   console.log(weatherData.list[0].weather[0].icon);
+
   return (
     <Stack sx={{ alignItems: "left", gap: "20px" }} direction="row">
       <Box>
@@ -12,7 +40,7 @@ export default function MainWeatherCard() {
             fontStyle: "sans-serif",
           }}
         >
-          24 Clouds
+          {temperatureInCelsius}°C
         </Typography>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
@@ -20,6 +48,7 @@ export default function MainWeatherCard() {
             alt=""
             style={{ width: "25px", height: "25px" }}
           />
+
           <Typography
             sx={{
               fontSize: "20px",
@@ -28,7 +57,19 @@ export default function MainWeatherCard() {
               fontWeight: "400",
             }}
           >
-            Colombo, Sri Lanka
+            {weatherData.city.name}
+            <span
+              style={{
+                marginLeft: "10px",
+                // backgroundColor: "skyblue",
+                color: "skyblue",
+                // padding: "px",
+                //   borderRadius: "10px",
+                // fontSize:'12px'
+              }}
+            >
+              {weatherData.list[0].weather[0].main}
+            </span>
           </Typography>
         </div>
         <Typography
@@ -39,12 +80,13 @@ export default function MainWeatherCard() {
             ml: "8px",
           }}
         >
-          21 st Octomber
+          {currentDay} {currentMonth}
         </Typography>
       </Box>
       <Box>
         <img
-          src="https://cdn2.iconfinder.com/data/icons/weather-color-2/500/weather-03-256.png"
+          src={`http://openweathermap.org/img/w/${weatherData.list[0].weather[0].icon}.png`}
+          //   src={weatherData.list[0].weather[0].icon}
           alt=""
           style={{ width: "80px", height: "80px" }}
         />
