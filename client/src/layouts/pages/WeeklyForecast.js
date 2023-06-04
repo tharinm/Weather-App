@@ -21,8 +21,8 @@ export default function WeeklyForecast() {
           height: "600px",
           width: "1100px",
           padding: "30px",
-          //   justifyContent: "center",
-          //   alignItems:'center'
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Grid item xs={12}>
@@ -31,7 +31,7 @@ export default function WeeklyForecast() {
               fontSize: "20px",
               fontFamily: "Ubuntu",
               fontStyle: "sans-serif",
-              textAlign: "center",
+              textAlign:{ md:"center"}
             }}
           >
             Weekly Weather Foreacast
@@ -41,21 +41,27 @@ export default function WeeklyForecast() {
         <Grid
           item
           container
-          sx={{ marginTop: "-100px", justifyContent: "center" }}
+          sx={{
+            marginTop: { xs: "-80px", md: "-250px" },
+
+            // padding: "10px",
+            justifyContent: "center",
+            // alignItems: "center",
+          }}
         >
-          <Grid item xs={2} sx={{}}>
+          <Grid item xs={6} md={2} sx={{}}>
             <SingleDayWeather />
           </Grid>
-          <Grid item xs={2} sx={{}}>
+          <Grid item xs={6} md={2} sx={{}}>
             <SingleDayWeather />
           </Grid>
-          <Grid item xs={2} sx={{}}>
+          <Grid item xs={6} md={2} sx={{}}>
             <SingleDayWeather />
           </Grid>
-          <Grid item xs={2} sx={{}}>
+          <Grid item xs={6} md={2} sx={{}}>
             <SingleDayWeather />
           </Grid>
-          <Grid item xs={2} sx={{}}>
+          <Grid item xs={6} md={2} sx={{}}>
             <SingleDayWeather />
           </Grid>
         </Grid>
