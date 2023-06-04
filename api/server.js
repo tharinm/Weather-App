@@ -12,7 +12,8 @@ dotenv.config()
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({ origin: "https://weather-f.onrender.com", credentials: true }));
+//localhost:3000
+http: app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 const connect = async () => {
   try {

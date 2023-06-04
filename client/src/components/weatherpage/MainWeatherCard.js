@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box,  Stack, Typography } from "@mui/material";
 import { weatherDataWrap } from "../../layouts/pages/WeatherMain";
 import moment from "moment";
 import {} from "react-router-dom";
@@ -27,7 +27,7 @@ export default function MainWeatherCard() {
     weatherData.list[0].main.temp - 273.15
   );
 
-  console.log(weatherData.list[0].main.temp);
+  // console.log(weatherData.list[0].main.temp);
   //   console.log(weatherData.list[0].weather[0].icon);
 
   return (
@@ -61,11 +61,7 @@ export default function MainWeatherCard() {
             <span
               style={{
                 marginLeft: "10px",
-                // backgroundColor: "skyblue",
                 color: "skyblue",
-                // padding: "px",
-                //   borderRadius: "10px",
-                // fontSize:'12px'
               }}
             >
               {weatherData.list[0].weather[0].main}
@@ -86,7 +82,6 @@ export default function MainWeatherCard() {
       <Box>
         <img
           src={`http://openweathermap.org/img/w/${weatherData.list[0].weather[0].icon}.png`}
-          //   src={weatherData.list[0].weather[0].icon}
           alt=""
           style={{ width: "80px", height: "80px" }}
         />

@@ -10,6 +10,8 @@ export default function WeatherMain() {
   const [weatherData, setWeatherData] = useState({});
   const [err, setErr] = useState("");
 
+  const [lat, setLat] = useState("6.9271");
+  const [long, setLong] = useState("79.8612");
   //   console.log(currentUser.username);
 
   // console.log(weatherData.weather)
@@ -36,7 +38,16 @@ export default function WeatherMain() {
         }}
       >
         <weatherDataWrap.Provider
-          value={{ weatherData, setWeatherData, err, setErr }}
+          value={{
+            weatherData,
+            setWeatherData,
+            err,
+            setErr,
+            lat,
+            setLat,
+            long,
+            setLong,
+          }}
         >
           <Grid item xs={12} sx={{}}>
             <TopSection />

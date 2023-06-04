@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./Error.css";
 
 export default function ErrorPage() {
   return (
@@ -9,20 +10,27 @@ export default function ErrorPage() {
       sx={{ justifyContent: "center", alignItems: "center" }}
       direction="column"
     >
-      <Grid
-        item
-        sx={{ mt: "50px", justifyContent: "center", alignItems: "center" }}
-      >
-        <Typography sx={{ fontSize: "20px" }}>
-          You Are Not Registered
-        </Typography>
+      <section className="page_404">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12 ">
+              <div className="col-sm-10 col-sm-offset-1  text-center">
+                <div className="four_zero_four_bg"></div>
 
-        <Button variant="contained" size="small">
-          <Link to="/" sx={{ textDecoration: "none" }}>
-            Login
-          </Link>
-        </Button>
-      </Grid>
+                <div className="contant_box_404">
+                  <Typography>Please Login ! Unauthorizes Access</Typography>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Button variant="contained" size="small">
+        <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          Login Here
+        </Link>
+      </Button>
     </Grid>
   );
 }

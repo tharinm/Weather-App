@@ -25,10 +25,7 @@ export default function RegisterForm() {
     }
     // console.log(details);
     try {
-      await axios.post(
-        "https://weather-b.onrender.com/api/auth/register",
-        details
-      );
+      await axios.post("http://localhost:8000/api/auth/register", details);
       navigate("/");
     } catch (err) {
       console.log(err);

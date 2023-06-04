@@ -7,14 +7,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function TopSection() {
-  const { weatherData, setWeatherData, err, setErr } =
-    useContext(weatherDataWrap);
-  const [lat, setLat] = useState("6.9271");
-  const [long, setLong] = useState("79.8612");
+  const {
+    setWeatherData,
+
+    setErr,
+    lat,
+    setLat,
+    long,
+    setLong,
+  } = useContext(weatherDataWrap);
 
   const [currentUser, setCurrentUser] = useState("");
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent form submission
@@ -55,20 +60,23 @@ export default function TopSection() {
     }
   }, []);
 
+  //logout
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8000/api/auth/logout");
+      localStorage.setItem("currentUser", "");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  //Block unauthorized users
   if (!currentUser) {
     navigate("/error");
   }
 
   // console.log(data);
-
-  // if (!data) {
-  // return <p>"Loding"</p>;
-  // }
-  // const uniqueDates = [...new Set(data.map((item) => item.dt_txt))];
-  // uniqueDates.forEach((date) => {
-  // const filteredItem = data.filter((item) => item.dt_txt === date);
-  // console.log(filteredItem);
-  // });
 
   return (
     <Grid
@@ -114,8 +122,22 @@ export default function TopSection() {
             onChange={handleLongChange}
           />
 
-          <Button variant="contained" size="small" onClick={handleSubmit} sx={{width:{xs:'150px'}}}>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={handleSubmit}
+            sx={{ width: { xs: "150px" } }}
+          >
             Search
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            color="warning"
+            onClick={handleLogout}
+            sx={{ width: { xs: "150px" } }}
+          >
+            Logout
           </Button>
         </Stack>
       </Grid>

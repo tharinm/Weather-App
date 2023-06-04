@@ -18,8 +18,6 @@ export default function Home() {
           <Route path="/error" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
-      {/* <WeeklyForecast /> */}
-      {/* <WeatherMain /> */}
     </div>
   );
 }
