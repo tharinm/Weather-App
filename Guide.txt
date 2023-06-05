@@ -1,0 +1,18 @@
+Weather App (React | Node | Material UI)
+
+*Default Accounts
+
+Username: Admin
+Password: 1234
+
+Username : Madhushan
+Password:1234
+
+(Password & username validate in backend.for the authentication process I used JWT token)
+
+Live Link : https://weather-f.onrender.com/
+Note : Responsive view developed for desktops and mobiles 
+
+GitHub Repository : https://github.com/tharinm/Weather-App
+
+GOOGLE 

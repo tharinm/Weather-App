@@ -63,7 +63,7 @@ export default function TopSection() {
   //logout
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8000/api/auth/logout");
+      await axios.post("https://weather-b.onrender.com/api/auth/logout");
       localStorage.setItem("currentUser", "");
       navigate("/");
     } catch (err) {
